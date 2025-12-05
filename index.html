@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Web & App Course</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #ff0055;
+            --secondary: #00ffcc;
+            --yellow: #ffee00;
+            --dark: #0f0f1a;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: white;
+            overflow-x: hidden;
+            background-image: linear-gradient(45deg, #0f0f1a 25%, #1a1a2e 25%, #1a1a2e 50%, #0f0f1a 50%, #0f0f1a 75%, #1a1a2e 75%, #1a1a2e 100%);
+            background-size: 40px 40px;
+            padding-bottom: 120px;
+        }
+
+        /* --- Animations --- */
+        @keyframes flash {
+            0% { background-color: var(--primary); color: white; transform: scale(1); }
+            50% { background-color: var(--yellow); color: black; transform: scale(1.02); }
+            100% { background-color: var(--primary); color: white; transform: scale(1); }
+        }
+
+        @keyframes pulse-border {
+            0% { border-color: var(--secondary); }
+            50% { border-color: var(--primary); box-shadow: 0 0 15px var(--primary); }
+            100% { border-color: var(--secondary); }
+        }
+
+        @keyframes blink-red {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes popUp {
+            0% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .marquee-container {
+            background: var(--yellow);
+            color: black;
+            font-weight: bold;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid red;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+        }
+
+        /* Live Badge */
+        .live-badge {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid red;
+            color: #ff4d4d;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .live-dot {
+            height: 10px;
+            width: 10px;
+            background-color: red;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+            animation: blink-red 1s infinite;
+        }
+
+        /* Special Coding Section */
+        .code-learn-box {
+            background: #111;
+            border: 2px dashed var(--yellow);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+            position: relative;
+        }
+        .code-tag {
+            background: var(--yellow);
+            color: black;
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            padding: 2px 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        /* Modules */
+        .course-modules {
+            display: grid;
+            gap: 15px;
+        }
+
+        .module-card {
+            background: linear-gradient(90deg, #1a1a2e, #252540);
+            padding: 15px;
+            border-left: 6px solid var(--secondary);
+            border-radius: 10px;
+            text-align: left;
+            transition: 0.3s;
+        }
+        .module-card:hover {
+            transform: translateX(5px);
+            background: #2a2a4a;
+        }
+        .module-card i {
+            color: var(--yellow);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            vertical-align: middle;
+            width: 30px; 
+            text-align: center;
+        }
+        .module-content {
+            display: inline-block;
+            vertical-align: middle;
+            width: calc(100% - 60px);
+        }
+
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            text-align: left;
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #444;
+        }
+        .feature-list li {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .feature-list li i {
+            color: #00ff00;
+            margin-right: 10px;
+        }
+
+        /* Price Area */
+        .price-area {
+            background: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 30px 0;
+            transform: rotate(-2deg);
+            border: 5px dashed var(--primary);
+            animation: popUp 2s infinite alternate;
+        }
+        .price-tag {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        /* Fixed Button */
+        .cta-container {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 9999;
+            pointer-events: none; 
+        }
+        .cta-btn {
+            pointer-events: auto; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            max-width: 500px;
+            background: var(--primary);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 50px;
+            border: 4px solid white;
+            animation: flash 0.8s infinite;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+        .cta-btn i { margin-right: 10px; font-size: 1.5rem; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Marquee -->
+    <div class="marquee-container">
+        <marquee behavior="scroll" direction="left" scrollamount="8">
+            🚨 অফার! অফার! ২০ দিনের প্রিমিয়াম ওয়েব ডেভেলপমেন্ট কোর্স! ৩টি লাইভ প্রজেক্ট! মাত্র ৪৯৯ টাকা! 🚨
+        </marquee>
+    </div>
+
+    <div class="container">
+        
+        <!-- Hero with Live Badge -->
+        <div class="live-badge">
+            <span class="live-dot"></span> ২০ দিনের লাইভ ক্লাস
+        </div>
+        
+        <h1>ওয়েব & অ্যাপ <br> <span style="color:white; font-size: 1.8rem;">ডেভেলপমেন্ট মাস্টারক্লাস</span></h1>
+
+        <!-- Learn THIS coding section -->
+        <div class="code-learn-box">
+            <div class="code-tag">চমক!</div>
+            <p style="color: #ddd; margin-bottom: 5px;">আপনি এখন যে ওয়েবসাইটটি দেখছেন...</p>
+            <h3 style="color: var(--secondary);"><i class="fas fa-code"></i> এই কোডিংও শেখানো হবে!</h3>
+            <p style="font-size: 0.9rem; color: #aaa; margin-top: 5px;">যেন আপনিও আপনার ক্লায়েন্টের জন্য এরকম ডিজাইন বানাতে পারেন।</p>
+        </div>
+
+        <!-- Modules -->
+        <h2 style="color: var(--yellow); margin: 25px 0 15px 0;">কি কি থাকছে? 👇</h2>
+        
+        <div class="course-modules">
+            <!-- Live Project -->
+            <div class="module-card" style="border-left-color: #ff0055; background: linear-gradient(90deg, #330011, #440022);">
+                <i class="fas fa-laptop-code" style="color: #ff0055;"></i>
+                <div class="module-content">
+                    <h3 style="color: #ff99bb;">৩টি লাইভ প্রজেক্ট</h3>
+                    <p style="font-size: 0.9rem; color: #ddd;">সরাসরি লাইভ ক্লাসে প্রজেক্ট করানো হবে।</p>
+                </div>
+            </div>
+
+            <!-- HTML/CSS -->
+            <div class="module-card">
+                <i class="fab fa-html5"></i>
+                <div class="module-content">
+                    <h3>HTML & CSS</h3>
+                    <p>স্ট্রাকচার, ডিজাইন ও অ্যানিমেশন।</p>
+                </div>
+            </div>
+
+            <!-- App Dev -->
+            <div class="module-card">
+                <i class="fab fa-android"></i>
+                <div class="module-content">
+                    <h3>APK Build</h3>
+                    <p>ওয়েবসাইটকে মোবাইল অ্যাপে রূপান্তর।</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video & Support Features -->
+        <div style="margin-top: 30px;">
+            <h3 style="color: white; margin-bottom: 15px;">কোর্স সুবিধা সমূহ ✅</h3>
+            <ul class="feature-list">
+                <li><i class="fas fa-video"></i> লাইভ ক্লাস শেষে <strong>রেকর্ডিং ভিডিও</strong></li>
+                <li><i class="fas fa-folder-open"></i> ক্লাসে করা সব <strong>সোর্স কোড</strong></li>
+                <li><i class="fas fa-headset"></i> লাইফটাইম সাপোর্ট গ্রুপ</li>
+                <li><i class="fas fa-mobile-alt"></i> মোবাইল দিয়ে শেখার গাইডলাইন</li>
+            </ul>
+        </div>
+
+        <!-- Pricing -->
+        <div class="price-area">
+            <h3>কোর্স ফি মাত্র</h3>
+            <div class="price-tag">৪৯৯/-</div>
+            <p style="font-size: 1.1rem;">(রেগুলার ফি: <del>২০০০ টাকা</del>)</p>
+            <p style="color: red; font-weight: bold; margin-top: 5px;">⚠️ অফারটি সীমিত সময়ের জন্য!</p>
+        </div>
+
+    </div>
+
+    <!-- Center Fixed Button -->
+    <div class="cta-container">
+        <a href="https://wa.me/8801706839800?text=আসসালামু%20আলাইকুম,%20আমি%20কোর্সটি%20করতে%20চাই।%20এটা%20কি%20এভেইলেবল%20আছে?" class="cta-btn">
+            <i class="fab fa-whatsapp"></i> সিট কনফার্ম করুন
+        </a>
+    </div>
+
+</body>
+</html>
